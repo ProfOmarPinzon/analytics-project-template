@@ -1,0 +1,64 @@
+[project]
+name = "analytics-project"
+version = "0.1.0"
+description = "Proyecto de Software para Analítica de Datos — AD, UPB"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas>=2.2",
+    "scikit-learn>=1.4",
+    "pandera>=0.19",
+    "fastapi>=0.110",
+    "uvicorn>=0.27",
+    "matplotlib>=3.8",
+    "seaborn>=0.13",
+    "joblib>=1.3",
+    "httpx>=0.27",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=4.1",
+    "jupyter>=1.1",
+    "notebook>=7.2",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/analytics"]
+
+# ----------------------------------------------------------
+# ruff: linter + formatter (reemplaza flake8, black, isort)
+# Documentación: https://docs.astral.sh/ruff/
+# ----------------------------------------------------------
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort (orden de imports)
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501", # line too long — ruff format lo maneja
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+# ----------------------------------------------------------
+# pytest: configuración de pruebas
+# ----------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-v --tb=short"

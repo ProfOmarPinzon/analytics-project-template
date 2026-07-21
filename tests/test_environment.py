@@ -10,8 +10,8 @@ from pathlib import Path
 def test_dependencias_principales():
     """Las librerías del curso están instaladas con versiones mínimas."""
     import pandas as pd
-    import sklearn
     import pandera  # noqa: F401
+    import sklearn
 
     assert tuple(int(x) for x in pd.__version__.split(".")[:2]) >= (2, 2), (
         f"pandas >= 2.2 requerido, instalado: {pd.__version__}"
